@@ -1,110 +1,822 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portafolio - Tu Nombre</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            text-align: center;
-            color: white;
-            padding: 100px 0;
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            font-size: 1.5em;
-            opacity: 0.9;
-        }
-        .section {
-            background: white;
-            margin: 40px 0;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 2em;
-        }
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
-        .skill {
-            background: #667eea;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: bold;
-        }
-        footer {
-            text-align: center;
-            color: white;
-            padding: 20px;
-            margin-top: 50px;
-        }
-        @media (max-width: 768px) {
-            h1 { font-size: 2em; }
-            .section { padding: 20px; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Cargo Solutions | Importación, Exportación y Logística</title>
+  <style>
+    :root {
+      --primary: #0f3d5e;
+      --secondary: #1d6fa5;
+      --accent: #f39c12;
+      --light: #f4f7fb;
+      --white: #ffffff;
+      --text: #213547;
+      --muted: #5b6b79;
+      --shadow: 0 18px 40px rgba(15, 61, 94, 0.12);
+      --radius: 20px;
+      --max-width: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--light);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: #0a2d45;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.95rem;
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(15, 61, 94, 0.08);
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 1.15rem;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: bold;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      flex-wrap: wrap;
+      align-items: center;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ffb13b);
+      color: #1f1f1f;
+      box-shadow: 0 12px 24px rgba(243, 156, 18, 0.24);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.4);
+      color: var(--white);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(8, 30, 48, 0.72), rgba(8, 30, 48, 0.72)),
+        url('https://images.unsplash.com/photo-1565891741441-64926e441838?auto=format&fit=crop&w=1600&q=80') center/cover;
+      color: var(--white);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(243,156,18,0.2), transparent 30%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      min-height: 84vh;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+      padding: 80px 0;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      max-width: 650px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 18px 20px;
+      min-width: 140px;
+      backdrop-filter: blur(12px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 24px;
+      padding: 28px;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .hero-card li {
+      background: rgba(255,255,255,0.08);
+      padding: 14px 16px;
+      border-radius: 14px;
+    }
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 50px;
+    }
+
+    .section-header span {
+      display: inline-block;
+      color: var(--accent);
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .services-grid,
+    .features-grid,
+    .steps-grid,
+    .contact-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .steps-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(29,111,165,0.12), rgba(15,61,94,0.18));
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 1.28rem;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .about {
+      background: linear-gradient(180deg, #ffffff, #f4f7fb);
+    }
+
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-image {
+      min-height: 440px;
+      border-radius: 28px;
+      background:
+        linear-gradient(rgba(15,61,94,0.2), rgba(15,61,94,0.25)),
+        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80') center/cover;
+      box-shadow: var(--shadow);
+    }
+
+    .about-content h2 {
+      color: var(--primary);
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 18px;
+    }
+
+    .about-content p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .check-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .check-list li {
+      background: white;
+      padding: 14px 16px;
+      border-radius: 14px;
+      box-shadow: 0 10px 24px rgba(15, 61, 94, 0.08);
+      font-weight: 600;
+    }
+
+    .numbers {
+      background: var(--primary);
+      color: white;
+    }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      text-align: center;
+    }
+
+    .number-box {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 28px 20px;
+    }
+
+    .number-box strong {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .cta {
+      background:
+        linear-gradient(135deg, rgba(15,61,94,0.95), rgba(29,111,165,0.88)),
+        url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1400&q=80') center/cover;
+      color: white;
+    }
+
+    .cta-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      background: rgba(255,255,255,0.08);
+      padding: 40px;
+      border-radius: 28px;
+      backdrop-filter: blur(10px);
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: rgba(255,255,255,0.9);
+      max-width: 700px;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .contact-card,
+    .contact-form {
+      background: white;
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .contact-list li {
+      padding: 16px;
+      background: #f7f9fc;
+      border-radius: 16px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #d7e0e8;
+      border-radius: 14px;
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 4px rgba(29,111,165,0.12);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    footer {
+      background: #0a2233;
+      color: rgba(255,255,255,0.86);
+      padding: 26px 0;
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-content,
+      .about-wrap,
+      .contact-grid,
+      .services-grid,
+      .features-grid,
+      .steps-grid,
+      .numbers-grid,
+      .cta-box {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cta-box {
+        display: grid;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-content,
+      .about-wrap,
+      .services-grid,
+      .features-grid,
+      .steps-grid,
+      .numbers-grid,
+      .contact-grid,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+
+      header,
+      section {
+        padding: 70px 0;
+      }
+
+      .hero-content {
+        min-height: auto;
+      }
+
+      .hero-card,
+      .card,
+      .contact-card,
+      .contact-form,
+      .cta-box {
+        padding: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>¡Hola! Soy [Tu Nombre]</h1>
-        <p class="subtitle">Desarrollador Web | Diseñador Creativo</p>
-    </header>
-
+  <div class="topbar">
     <div class="container">
-        <section class="section">
-            <h2>👋 Sobre Mí</h2>
-            <p>Soy un apasionado por la tecnología y el diseño. Me encanta crear experiencias web increíbles que impacten a los usuarios. ¡Hablemos de tu proyecto!</p>
-        </section>
-
-        <section class="section">
-            <h2>🛠️ Habilidades</h2>
-            <div class="skills">
-                <span class="skill">HTML5</span>
-                <span class="skill">CSS3</span>
-                <span class="skill">JavaScript</span>
-                <span class="skill">React</span>
-                <span class="skill">Node.js</span>
-                <span class="skill">Python</span>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>📧 Contáctame</h2>
-            <p>Email: <a href="mailto:tuemail@example.com">tuemail@example.com</a></p>
-            <p>LinkedIn: <a href="#">linkedin.com/in/tunombre</a></p>
-        </section>
+      <div>Transporte marítimo, aéreo y terrestre para tus operaciones globales</div>
+      <div>📞 +506 0000-0000 | ✉️ contacto@globalcargosolutions.com</div>
     </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2024 [Tu Nombre]. Hecho con ❤️ por Blackbox AI.</p>
-    </footer>
+  <nav class="navbar">
+    <div class="container">
+      <a href="#inicio" class="logo">
+        <div class="logo-mark">GC</div>
+        <span>Global Cargo Solutions</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#contacto" class="btn btn-primary">Solicitar cotización</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1>Impulsamos tu comercio internacional con logística segura y eficiente</h1>
+        <p>
+          Somos especialistas en importación, exportación y soluciones logísticas integrales.
+          Conectamos tu negocio con el mundo mediante procesos ágiles, trazabilidad y asesoría personalizada.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contacto" class="btn btn-primary">Cotiza tu carga</a>
+          <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>+15</strong>
+            <span>Años de experiencia</span>
+          </div>
+          <div class="stat">
+            <strong>+40</strong>
+            <span>Países conectados</span>
+          </div>
+          <div class="stat">
+            <strong>24/7</strong>
+            <span>Seguimiento operativo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>¿Qué ofrecemos?</h3>
+        <p>Soluciones integrales para cada etapa de tu cadena logística.</p>
+        <ul>
+          <li>✅ Gestión de importaciones y exportaciones</li>
+          <li>✅ Coordinación aduanera y documental</li>
+          <li>✅ Transporte marítimo, aéreo y terrestre</li>
+          <li>✅ Almacenaje, distribución y seguimiento de carga</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <span>Nuestros servicios</span>
+        <h2>Soluciones logísticas a la medida de tu empresa</h2>
+        <p>
+          Diseñamos operaciones confiables para optimizar tiempos, reducir riesgos y asegurar la continuidad de tus embarques.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <article class="card">
+          <div class="icon">🚢</div>
+          <h3>Importación y exportación</h3>
+          <p>Coordinamos tus envíos internacionales con enfoque en cumplimiento, eficiencia y control total de la operación.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">📦</div>
+          <h3>Logística integral</h3>
+          <p>Gestionamos transporte, consolidación de carga, almacenaje y distribución para una cadena de suministro más ágil.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🛃</div>
+          <h3>Asesoría aduanera</h3>
+          <p>Te ayudamos con documentación, clasificación, procesos regulatorios y coordinación aduanera para evitar retrasos.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="nosotros">
+    <div class="container about-wrap">
+      <div class="about-image"></div>
+
+      <div class="about-content">
+        <span style="color: var(--accent); font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em;">Sobre nosotros</span>
+        <h2>Tu aliado estratégico en comercio exterior</h2>
+        <p>
+          En Global Cargo Solutions ayudamos a empresas de distintos sectores a mover mercancías de forma segura, ordenada y rentable.
+          Nuestro equipo combina experiencia operativa, servicio cercano y visión estratégica.
+        </p>
+        <p>
+          Entendemos que cada carga es importante. Por eso brindamos atención personalizada, visibilidad del proceso y soluciones adaptadas a cada cliente.
+        </p>
+
+        <ul class="check-list">
+          <li>✔ Atención personalizada para cada operación</li>
+          <li>✔ Coordinación eficiente con proveedores y agentes</li>
+          <li>✔ Enfoque en tiempos de entrega y trazabilidad</li>
+          <li>✔ Cobertura nacional e internacional</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <span>Ventajas competitivas</span>
+        <h2>Por qué las empresas nos eligen</h2>
+        <p>Trabajamos con enfoque en resultados, confianza y mejora continua en cada embarque.</p>
+      </div>
+
+      <div class="features-grid">
+        <article class="card">
+          <div class="icon">⏱️</div>
+          <h3>Rapidez operativa</h3>
+          <p>Reducimos tiempos de gestión mediante procesos claros y coordinación efectiva.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🔎</div>
+          <h3>Trazabilidad</h3>
+          <p>Mantén visibilidad de tu carga durante cada etapa del proceso logístico.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🤝</div>
+          <h3>Atención cercana</h3>
+          <p>Un equipo disponible para acompañarte con información oportuna y soluciones reales.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🌎</div>
+          <h3>Alcance global</h3>
+          <p>Conectamos tu negocio con mercados internacionales de forma segura y ordenada.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="numbers">
+    <div class="container">
+      <div class="numbers-grid">
+        <div class="number-box">
+          <strong>98%</strong>
+          <span>Entregas coordinadas a tiempo</span>
+        </div>
+        <div class="number-box">
+          <strong>+2,500</strong>
+          <span>Operaciones gestionadas</span>
+        </div>
+        <div class="number-box">
+          <strong>+120</strong>
+          <span>Clientes atendidos</span>
+        </div>
+        <div class="number-box">
+          <strong>24/7</strong>
+          <span>Soporte logístico</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proceso">
+    <div class="container">
+      <div class="section-header">
+        <span>Nuestro proceso</span>
+        <h2>Así gestionamos tu operación</h2>
+        <p>Te acompañamos desde la planificación hasta la entrega con una metodología clara y eficiente.</p>
+      </div>
+
+      <div class="steps-grid">
+        <article class="card">
+          <div class="icon">1</div>
+          <h3>Análisis</h3>
+          <p>Evaluamos tu necesidad logística, tipo de carga, origen, destino y requerimientos especiales.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">2</div>
+          <h3>Planificación</h3>
+          <p>Definimos la mejor ruta, documentación y modalidad de transporte para tu operación.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">3</div>
+          <h3>Ejecución</h3>
+          <p>Coordinamos transporte, procesos aduaneros y seguimiento continuo de la carga.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">4</div>
+          <h3>Entrega</h3>
+          <p>Monitoreamos el cierre de la operación y garantizamos comunicación constante hasta el destino final.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="cta-box">
+        <div>
+          <h2>Movemos tu negocio hacia nuevos mercados</h2>
+          <p>
+            Solicita una asesoría y descubre cómo podemos ayudarte a optimizar tu logística de importación y exportación.
+          </p>
+        </div>
+        <div>
+          <a href="#contacto" class="btn btn-primary">Hablar con un asesor</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <div class="section-header">
+        <span>Contacto</span>
+        <h2>Estamos listos para ayudarte</h2>
+        <p>Cuéntanos sobre tu operación y te contactaremos con una propuesta ajustada a tu necesidad.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 10px;">Información de contacto</h3>
+          <p style="color: var(--muted);">Puedes comunicarte con nosotros por cualquiera de estos medios.</p>
+
+          <ul class="contact-list">
+            <li><strong>📍 Dirección:</strong><br>San José, Costa Rica</li>
+            <li><strong>📞 Teléfono:</strong><br>+506 0000-0000</li>
+            <li><strong>✉️ Correo:</strong><br>contacto@globalcargosolutions.com</li>
+            <li><strong>🕒 Horario:</strong><br>Lunes a viernes, 8:00 a. m. a 5:00 p. m.</li>
+          </ul>
+        </div>
+
+        <div class="contact-form">
+          <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 16px;">Solicita una cotización</h3>
+          <form>
+            <input type="text" placeholder="Nombre completo" required>
+            <input type="email" placeholder="Correo electrónico" required>
+            <input type="text" placeholder="Empresa">
+            <select>
+              <option>Tipo de servicio</option>
+              <option>Importación</option>
+              <option>Exportación</option>
+              <option>Logística integral</option>
+              <option>Asesoría aduanera</option>
+            </select>
+            <textarea placeholder="Cuéntanos qué necesitas"></textarea>
+            <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer;">Enviar solicitud</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-wrap">
+      <p>© 2026 Global Cargo Solutions. Todos los derechos reservados.</p>
+      <p>Importación | Exportación | Logística internacional</p>
+    </div>
+  </footer>
 </body>
 </html>
