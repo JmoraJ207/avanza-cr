@@ -793,20 +793,45 @@
 
         <div class="contact-form">
           <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 16px;">Solicita una cotización</h3>
-          <form>
-            <input type="text" placeholder="Nombre completo" required>
-            <input type="email" placeholder="Correo electrónico" required>
-            <input type="text" placeholder="Empresa">
-            <select>
-              <option>Tipo de servicio</option>
-              <option>Importación</option>
-              <option>Exportación</option>
-              <option>Logística integral</option>
-              <option>Asesoría aduanera</option>
-            </select>
-            <textarea placeholder="Cuéntanos qué necesitas"></textarea>
-            <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer;">Enviar solicitud</button>
-          </form>
+         <form action="https://formsubmit.co/cindy.jimenez@avanza-cr.com" method="POST">
+
+  <!-- Opciones ocultas -->
+  <input type="hidden" name="_subject" value="Nueva solicitud desde Avanza-CR">
+  <input type="hidden" name="_captcha" value="false">
+
+  <input type="text"
+         name="Nombre"
+         placeholder="Nombre completo"
+         required>
+
+  <input type="email"
+         name="Correo"
+         placeholder="Correo electrónico"
+         required>
+
+  <input type="text"
+         name="Empresa"
+         placeholder="Empresa">
+
+  <select name="Servicio" required>
+    <option value="">Tipo de servicio</option>
+    <option>Importación</option>
+    <option>Exportación</option>
+    <option>Logística integral</option>
+    <option>Asesoría aduanera</option>
+  </select>
+
+  <textarea name="Mensaje"
+            placeholder="Cuéntanos qué necesitas"
+            required></textarea>
+
+  <button type="submit"
+          class="btn btn-primary"
+          style="border: none; cursor: pointer;">
+    Enviar solicitud
+  </button>
+
+</form>
         </div>
       </div>
     </div>
